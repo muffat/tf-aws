@@ -1,7 +1,7 @@
 resource "aws_eks_cluster" "main" {
   name     = var.cluster_name
   role_arn = var.role_arn
-  version  = var.version
+  version  = var.kubernetes_version
   tags     = var.tags
 
   vpc_config {
