@@ -19,3 +19,11 @@ resource "aws_eks_node_group" "main" {
 
   tags = var.tags
 }
+
+output "arn" {
+  value = aws_eks_node_group.main.arn
+}
+
+output "id" {
+  value = aws_eks_node_group.main.id
+}
