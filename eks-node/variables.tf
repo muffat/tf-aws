@@ -4,7 +4,7 @@ variable "node_role_arn" {}
 variable "subnet_ids" {}
 variable "instance_types" {}
 variable "labels" {
-  default = ""
+  default = {}
 }
 variable "ec2_ssh_key" {}
 variable "source_security_group_ids" {}
