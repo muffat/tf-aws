@@ -19,6 +19,7 @@ resource "aws_eks_node_group" "main" {
   labels          = var.labels
 
   launch_template {
+    launch_template_id = sdf
     version = 1
   }
 
