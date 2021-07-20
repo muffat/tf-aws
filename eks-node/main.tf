@@ -1,9 +1,22 @@
+resource "aws_launch_template" "main" {
+  name = "foo"
+
+  block_device_mappings {
+    device_name = "/dev/xvda"
+
+    ebs {
+      volume_size = 20
+    }
+  }
+}
+
 resource "aws_eks_node_group" "main" {
   cluster_name    = var.cluster_name
   node_group_name = var.node_group_name
   node_role_arn   = var.node_role_arn
   subnet_ids      = var.subnet_ids
   instance_types  = var.instance_types
+  launch_template = aws_launch_template.main.name
   labels          = var.labels
 
   remote_access {
