@@ -1,13 +1,13 @@
-resource "random_string" "random" {
+/*resource "random_string" "random" {
   keepers = {
     name = var.node_group_name
   }
   special = false
   length  = 8
-}
+}*/
 
 resource "aws_launch_template" "main" {
-  name          = "${var.node_group_name}-${random_string.random.id}"
+  name          = "lt-eks-${var.node_group_name}"
   image_id      = "ami-07d07629a4f622bb9"
   instance_type = "t2.micro"
   key_name      = "aws-oasis"
