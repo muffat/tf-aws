@@ -22,6 +22,7 @@ resource "aws_launch_template" "main" {
   image_id      = "ami-07d07629a4f622bb9"
   instance_type = "t2.micro"
   key_name      = "aws-oasis"
+  disable_api_termination = false
 
   user_data = "${base64encode(data.template_file.main.rendered)}"
   block_device_mappings {
