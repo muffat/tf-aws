@@ -20,7 +20,6 @@ resource "aws_launch_template" "main" {
       volume_type           = "gp2"
       delete_on_termination = true
       iops                  = 0
-      throughput            = 0
     }
   }
 
