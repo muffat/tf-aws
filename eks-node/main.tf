@@ -16,8 +16,11 @@ resource "aws_eks_node_group" "main" {
   node_role_arn   = var.node_role_arn
   subnet_ids      = var.subnet_ids
   instance_types  = var.instance_types
-  launch_template = aws_launch_template.main.name
   labels          = var.labels
+
+  launch_template {
+    version = 1
+  }
 
   remote_access {
     ec2_ssh_key               = var.ec2_ssh_key
