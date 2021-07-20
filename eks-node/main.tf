@@ -1,12 +1,32 @@
+resource "random_string" "random" {
+  keepers = {
+    name = var.node_group_name
+  }
+  special = false
+  length  = 8
+}
+
 resource "aws_launch_template" "main" {
-  name = "foo"
+  name          = "${var.node_group_name}-${random_string.random.id}"
+  image_id      = "ami-07d07629a4f622bb9"
+  instance_type = "t2.micro"
+  key_name      = "aws-oasis"
 
   block_device_mappings {
     device_name = "/dev/xvda"
 
     ebs {
-      volume_size = 20
+      volume_size           = 20
+      volume_type           = "gp2"
+      delete_on_termination = true
+      iops                  = 0
+      throughput            = 0
     }
+  }
+
+  tags = {
+    "eks:cluster-name" : var.cluster_name
+    "eks:nodegroup-name" : var.node_group_name
   }
 }
 
