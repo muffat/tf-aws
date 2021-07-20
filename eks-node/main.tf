@@ -19,7 +19,7 @@ resource "aws_eks_node_group" "main" {
   labels          = var.labels
 
   launch_template {
-    launch_template_id = sdf
+    id      = aws_launch_template.main.id
     version = 1
   }
 
